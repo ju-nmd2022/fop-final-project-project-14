@@ -19,7 +19,7 @@ function setup() {
 
 
 
-let state = "result";
+let state = "start";
 
 
 // the 3 diffrent screens
@@ -28,6 +28,13 @@ function startScreen() {
     fill(255);
     textSize(21);
     text("This is the start screen", 150 , 100);
+    text("Press spacebar to start the game", 150 , 200);
+
+
+    //spacebar to start the game
+    if (keyIsDown(32)) {
+        state = "game";
+    }
 }
 
 
@@ -36,6 +43,14 @@ function gameScreen() {
     fill(255);
     textSize(21);
     text("This is the game screen", 150 , 100);
+    text("press spacebar to go to result", 150 , 200);
+
+
+    //spacebar to go the result
+    ///(just for now)
+    if (keyIsDown(32)) {
+        state = "result";
+    }
 }
 
 
@@ -44,6 +59,13 @@ function resultScreen() {
     fill(255);
     textSize(21);
     text("This is the result screen", 150 , 100);
+    text("Press spacebar to play again", 150 , 200);
+
+
+    //spacebar to start the game again
+    if (keyIsDown(32)) {
+        state = "game";
+    }
 }
 
 
