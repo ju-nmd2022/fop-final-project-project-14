@@ -1,11 +1,13 @@
 export default class Character {
+    imageIndex = 0;
+
 // scale = size adjustments
     constructor(x, y, scale, imgs) {
         this.x = x;
         this.y = y;
         this.scale = scale;
         this.imgs = this.loadImages(imgs);
-        this.img = this.imgs[0];
+        this.img = this.imgs[this.imageIndex];
     }
 
     draw() {
@@ -24,5 +26,16 @@ export default class Character {
         }
 
         return loadedImages;
+    }
+
+    nextImage() {
+        //minus ett för att inte gå utanför arrayn
+        if (this.imageIndex < this.imgs.length - 1) {
+            this.imageIndex = this.imageIndex + 1;
+        } else {
+            this.imageIndex = 0;
+        }
+        // den aktiva bilden som visas i draw uppdateras till nästa i arrayn
+        this.img = this.imgs[this.imageIndex];
     }
 }

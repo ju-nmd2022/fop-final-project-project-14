@@ -34,6 +34,8 @@ function draw() {
 
   //example, to see them
   hen1.draw();
+  hen1.move();
+  
   chick1.draw();
   fox1.draw();
 
