@@ -1,6 +1,7 @@
 import { Hen } from "./hen.js";
 import { Chick } from "./chick.js";
 import { Fox } from "./fox.js";
+import { Worm } from "./worm.js";
 
 let backgroundImage;
 let canvasPlayScreen;
@@ -8,6 +9,7 @@ let canvasPlayScreen;
 let hen1;
 let chick1;
 let fox1;
+let worm;
 
 function preload() {
   backgroundImage = loadImage("/images/background-big.png");
@@ -15,6 +17,7 @@ function preload() {
   hen1 = new Hen(200, 200);
   chick1 = new Chick(170, 300);
   fox1 = new Fox(500, 400);
+  worm = new Worm(600, 200);
 }
 
 window.preload = preload;
@@ -37,6 +40,7 @@ function draw() {
 
   chick1.draw();
   fox1.draw();
+  worm.draw();
 }
 
 window.draw = draw;
