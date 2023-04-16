@@ -2,7 +2,6 @@ import { Hen } from "./hen.js";
 import { Chick } from "./chick.js";
 import { Fox } from "./fox.js";
 
-
 let backgroundImage;
 let canvasPlayScreen;
 
@@ -21,7 +20,7 @@ function preload() {
 window.preload = preload;
 
 function setup() {
-  //   frameRate(30);
+  frameRate(30);
   createCanvas(backgroundImage.width, backgroundImage.height);
 
   // canvasPlayScreen.position(0, 300);
@@ -35,10 +34,9 @@ function draw() {
   //example, to see them
   hen1.draw();
   hen1.move();
-  
+
   chick1.draw();
   fox1.draw();
-
 }
 
 window.draw = draw;
