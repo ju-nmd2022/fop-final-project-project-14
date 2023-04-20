@@ -1,5 +1,5 @@
 import Character from "./character.js";
-
+let henSpeed = 5;
 export class Hen extends Character {
   constructor(x, y) {
     super(x, y, 0.05, [
@@ -11,16 +11,16 @@ export class Hen extends Character {
 
   move() {
     if (keyIsDown(RIGHT_ARROW)) {
-      this.x = this.x + 5;
+      this.x = this.x + henSpeed;
       this.nextImage();
     } else if (keyIsDown(LEFT_ARROW)) {
-      this.x = this.x - 5;
+      this.x = this.x - henSpeed;
       this.nextImage();
     } else if (keyIsDown(UP_ARROW)) {
-      this.y = this.y - 5;
+      this.y = this.y - henSpeed;
       this.nextImage();
     } else if (keyIsDown(DOWN_ARROW)) {
-      this.y = this.y + 5;
+      this.y = this.y + henSpeed;
       this.nextImage();
     }
   }
