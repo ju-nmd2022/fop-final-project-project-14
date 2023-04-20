@@ -2,16 +2,16 @@ export default class Character {
     imageIndex = 0;
 
 // scale = size adjustments
-    constructor(x, y, scale, imgs) {
+    constructor(x, y, size, imgs) {
         this.x = x;
         this.y = y;
-        this.scale = scale;
+        this.size = size;
         this.imgs = this.loadImages(imgs);
         this.img = this.imgs[this.imageIndex];
     }
 
     draw() {
-        image(this.img, this.x, this.y, this.img.width * this.scale, this.img.height * this.scale);
+        image(this.img, this.x, this.y, this.img.width * this.size, this.img.height * this.size);
     }
 
     // Takes an array of file paths
