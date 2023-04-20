@@ -40,6 +40,7 @@ function draw() {
 
   chick1.draw();
   fox1.draw();
+  fox1.move();
   worm.draw();
 }
 
