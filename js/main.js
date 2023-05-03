@@ -8,8 +8,8 @@ let canvasPlayScreen;
 
 let hen1;
 let chick1;
-let fox1;
 let worms = [];
+let fox1;
 
 function preload() {
   backgroundImage = loadImage("/images/background-big.png");
@@ -47,6 +47,7 @@ function draw() {
   chick1.draw();
   chick1.chickMove();
   fox1.draw();
+  fox1.foxMove();
 
   //worm
 
