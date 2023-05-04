@@ -15,10 +15,16 @@ export class Hen extends Character {
       this.nextImage();
     } else if (keyIsDown(LEFT_ARROW)) {
       this.x = this.x - henSpeed;
+<<<<<<< Updated upstream
       // push();
       // scale(-1, 1);
       // pop();
+=======
+      push();
+      scale(-1, 1);
+>>>>>>> Stashed changes
       this.nextImage();
+      pop();
     } else if (keyIsDown(UP_ARROW)) {
       this.y = this.y - henSpeed;
       this.nextImage();
