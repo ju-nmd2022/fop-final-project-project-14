@@ -27,6 +27,10 @@ function setup() {
 
   // canvasPlayScreen.position(0, 300);
 
+  // Add the click event listener for the canvas
+  canvasPlayScreen = document.querySelector("#defaultCanvas0");
+  canvasPlayScreen.addEventListener("click", mouseClicked);
+
   for (let i = 0; i < 5; i++) {
     const x = random(width);
     const y = random(height);
@@ -40,23 +44,37 @@ window.setup = setup;
 function draw() {
   background(backgroundImage);
 
-  //example, to see them
   hen1.draw();
   hen1.move();
-
   chick1.draw();
   chick1.chickMove();
   fox1.draw();
-
   fox1.foxMove();
-  // fox1.changeDirection();
-
 
   //worm
-
   for (let i = 0; i < worms.length; i++) {
     const worm = worms[i];
     worm.draw();
   }
 }
 window.draw = draw;
+
+function mouseClicked() {
+  // Check if the mouse is clicked on a worm
+  for (let i = 0; i < worms.length; i++) {
+    const worm = worms[i];
+    if (worm.isClicked(mouseX, mouseY)) {
+      // Remove the clicked worm
+      worms.splice(i, 1);
+
+      // Add a new worm randomly in the canvas
+      const x = random(width);
+      const y = random(height);
+      const worm = new Worm(x, y);
+      worms.push(worm);
+
+      // Exit the loop as we have found the clicked worm
+      break;
+    }
+  }
+}
