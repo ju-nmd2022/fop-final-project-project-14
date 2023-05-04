@@ -41,16 +41,16 @@ function draw() {
   background(backgroundImage);
 
   //example, to see them
+
   hen1.draw();
+
   hen1.move();
 
   chick1.draw();
   chick1.chickMove();
   fox1.draw();
-
   fox1.foxMove();
   // fox1.changeDirection();
-
 
   //worm
 
