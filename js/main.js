@@ -48,6 +48,7 @@ function draw() {
   chick1.chickMove();
   fox1.draw();
   fox1.foxMove();
+  // fox1.changeDirection();
 
   //worm
 

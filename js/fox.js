@@ -13,40 +13,49 @@ export class Fox extends Character {
       "/images/fox/fox8.png",
       "/images/fox/fox9.png",
     ]);
+
+    // Initialize the fox's movement direction
+    this.direction = p5.Vector.random2D(); // Set a random direction
   }
-
   foxMove() {
-    // move randomly within canvas bounds
-    // if (keyIsDown(RIGHT_ARROW)) {
-    //   this.x = this.x + foxSpeed;
-    //   this.nextImage();
-    // } else if (keyIsDown(LEFT_ARROW)) {
-    //   this.x = this.x - foxSpeed;
-    //   this.nextImage();
-    // } else if (keyIsDown(UP_ARROW)) {
-    //   this.y = this.y - foxSpeed;
-    //   this.nextImage();
-    // } else if (keyIsDown(DOWN_ARROW)) {
-    //   this.y = this.y + foxSpeed;
-    //   this.nextImage();
-    // }
-
-    // Generate random velocities
-    // const dx = random(-1, 1) * foxSpeed;
-    // const dy = random(-1, 1) * ;
-
-    // Update position within canvas bounds
-    this.x += foxSpeed;
-    this.y += foxSpeed;
-    if (this.x > width || this.y > this.height) {
-      this.x -= foxSpeed;
-      this.y -= foxSpeed;
+    // Check if the fox has hit a wall
+    if (
+      this.x < 0 ||
+      this.x > width - this.img.width * this.scale ||
+      this.y < 0 ||
+      this.y > height - this.img.height * this.scale
+    ) {
+      // Choose a new random direction
+      // chatGPT told me P5.Vector.random2D can make a random direction, this is awsome!
+      this.direction = p5.Vector.random2D();
     }
 
-    this.x = constrain(this.x, 0, width - this.img.width * this.scale);
-    this.y = constrain(this.y, 0, height - this.img.height * this.scale);
-
-    // Update image
+    // Move in the current direction
+    this.x += foxSpeed * this.direction.x;
+    this.y += foxSpeed * this.direction.y;
     this.nextImage();
   }
+  // foxMove() {
+  //   this.x += this.direction.x * foxSpeed;
+  //   this.y += this.direction.y * foxSpeed;
+
+  //   this.x = constrain(this.x, 0, width - this.img.width * this.scale);
+  //   this.y = constrain(this.y, 0, height - this.img.height * this.scale);
+  //   this.nextImage();
+  // }
+
+  // changeDirection() {
+  //   // If the fox hits the left or right border of the canvas, change the horizontal direction
+  //   if (this.x <= 0 || this.x >= width - this.img.width * this.scale) {
+  //     this.direction.x *= -1;
+  //   }
+
+  //   // If the fox hits the top or bottom border of the canvas, change the vertical direction
+  //   if (
+  //     this.y <= 0 ||
+  //     this.y >= height - height - this.img.height * this.scale
+  //   ) {
+  //     this.direction.y *= -1;
+  //   }
+  // }
 }
