@@ -8,8 +8,8 @@ let canvasPlayScreen;
 
 let hen1;
 let chick1;
+let worms = [];
 let fox1;
-let worm;
 
 function preload() {
   backgroundImage = loadImage("/images/background-big.png");
@@ -17,7 +17,6 @@ function preload() {
   hen1 = new Hen(200, 200);
   chick1 = new Chick(170, 300);
   fox1 = new Fox(500, 400);
-  worm = new Worm(600, 200);
 }
 
 window.preload = preload;
@@ -27,6 +26,13 @@ function setup() {
   createCanvas(backgroundImage.width, backgroundImage.height);
 
   // canvasPlayScreen.position(0, 300);
+
+  for (let i = 0; i < 5; i++) {
+    const x = random(width);
+    const y = random(height);
+    const worm = new Worm(x, y);
+    worms.push(worm);
+  }
 }
 
 window.setup = setup;
@@ -39,9 +45,18 @@ function draw() {
   hen1.move();
 
   chick1.draw();
+  chick1.chickMove();
   fox1.draw();
-  fox1.move();
-  worm.draw();
-}
 
+  fox1.foxMove();
+  // fox1.changeDirection();
+
+
+  //worm
+
+  for (let i = 0; i < worms.length; i++) {
+    const worm = worms[i];
+    worm.draw();
+  }
+}
 window.draw = draw;
