@@ -44,7 +44,12 @@ window.setup = setup;
 function draw() {
   background(backgroundImage);
 
-  hen1.draw();
+  // Check if the hen is eating and draw the appropriate image
+  if (hen1.isEating) {
+    image(hen1.eatingHen, hen1.x, hen1.y);
+  } else {
+    hen1.draw();
+  }
   hen1.move();
   chick1.draw();
   chick1.chickMove();
@@ -63,7 +68,11 @@ function mouseClicked() {
   // Check if the mouse is clicked on a worm
   for (let i = 0; i < worms.length; i++) {
     const worm = worms[i];
-    if (worm.isClicked(mouseX, mouseY)) {
+    //Check if the hen is close enough to the worm
+    const dx = hen1.x - worm.x;
+    const dy = hen1.y - worm.y;
+    const distance = dist(hen1.x, hen1.y, worm.x, worm.y);
+    if (distance < 120 && worm.isClicked(mouseX, mouseY)) {
       // Remove the clicked worm
       worms.splice(i, 1);
 
@@ -72,7 +81,8 @@ function mouseClicked() {
       const y = random(height);
       const newWorm = new Worm(x, y);
       worms.push(newWorm);
-
+      //change the image when hen is eating
+      hen1.eatWorm();
       // Exit the loop as we have found the clicked worm
       break;
     }
