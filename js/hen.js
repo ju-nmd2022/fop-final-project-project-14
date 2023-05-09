@@ -7,6 +7,11 @@ export class Hen extends Character {
       "/images/hen/hen1.png",
       "/images/hen/hen2.png",
     ]);
+
+    this.eatingHen = loadImage("/images/hen/hen-eat-worm.png", (img) => {
+      img.resize(img.width * 0.05, img.height * 0.05);
+    });
+    this.isEating = false;
   }
 
   move() {
@@ -26,6 +31,17 @@ export class Hen extends Character {
       this.y = this.y + henSpeed;
       this.nextImage();
     }
+  }
+
+  eatWorm() {
+    this.isEating = true;
+    this.image = this.eatingHen;
+    // Change the image back to the original hen image after a delay of 0.2 second, chatGPT gave me the solution
+    setTimeout(() => {
+      this.isEating = false;
+      this.imageIndex = 0;
+      this.image = this.images[0];
+    }, 200);
   }
 }
 
