@@ -10,6 +10,7 @@ let hen1;
 let chick1;
 let worms = [];
 let fox1;
+let wormCount = 0;
 
 function preload() {
   backgroundImage = loadImage("/images/background-big.png");
@@ -43,7 +44,12 @@ window.setup = setup;
 
 function draw() {
   background(backgroundImage);
-
+  indicator();
+  //worm
+  for (let i = 0; i < worms.length; i++) {
+    const worm = worms[i];
+    worm.draw();
+  }
   // Check if the hen is eating and draw the appropriate image
   if (hen1.isEating) {
     image(hen1.eatingHen, hen1.x, hen1.y);
@@ -53,14 +59,9 @@ function draw() {
   hen1.move();
   chick1.draw();
   chick1.chickMove();
+
   fox1.draw();
   fox1.foxMove();
-
-  //worm
-  for (let i = 0; i < worms.length; i++) {
-    const worm = worms[i];
-    worm.draw();
-  }
 }
 window.draw = draw;
 
@@ -81,10 +82,22 @@ function mouseClicked() {
       const y = random(height);
       const newWorm = new Worm(x, y);
       worms.push(newWorm);
+
+      // Update worm count
+      wormCount++;
+
       //change the image when hen is eating
       hen1.eatWorm();
       // Exit the loop as we have found the clicked worm
       break;
     }
   }
+}
+
+function indicator() {
+  push();
+  fill(255);
+  textSize(16);
+  text("Worm eaten: " + wormCount, 20, 30);
+  pop();
 }
