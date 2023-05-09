@@ -14,12 +14,17 @@ export class Fox extends Character {
       "/images/fox/fox9.png",
     ]);
 
-    // Initialize the fox's movement direction
+    // Initialize the fox's movement direction, this slution is from chatGPT
     this.direction = p5.Vector.random2D(); // Set a random direction
   }
   foxMove() {
     // Check if the fox has hit a wall
-    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+    if (
+      this.x < 0 ||
+      this.x > width - this.img.width * this.size ||
+      this.y < 0 ||
+      this.y > height - this.img.height * this.size
+    ) {
       // Choose a new random direction
       // chatGPT told me P5.Vector.random2D can make a random direction, this is awsome!
       this.direction = p5.Vector.random2D();
