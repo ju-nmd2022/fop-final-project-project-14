@@ -16,7 +16,6 @@ function preload() {
 
   hen1 = new Hen(200, 200);
   chick1 = new Chick(170, 300);
-  fox1 = new Fox(500, 400);
 }
 
 window.preload = preload;
@@ -25,7 +24,8 @@ function setup() {
   frameRate(30);
   createCanvas(backgroundImage.width, backgroundImage.height);
 
-  // canvasPlayScreen.position(0, 300);
+  //the fox will show up from random location in the canvas
+  fox1 = new Fox(random(width), random(height));
 
   // Add the click event listener for the canvas
   canvasPlayScreen = document.querySelector("#defaultCanvas0");
@@ -70,8 +70,8 @@ function mouseClicked() {
       // Add a new worm randomly in the canvas
       const x = random(width);
       const y = random(height);
-      const worm = new Worm(x, y);
-      worms.push(worm);
+      const newWorm = new Worm(x, y);
+      worms.push(newWorm);
 
       // Exit the loop as we have found the clicked worm
       break;
