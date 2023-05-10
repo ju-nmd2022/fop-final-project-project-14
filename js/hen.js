@@ -19,6 +19,8 @@ export class Hen extends Character {
     });
     this.isLayingEgg = false;
 
+    this.direction = 1;
+
     // Initialize numWormsEaten to 0
     this.numWormsEaten = 0;
   }
@@ -27,8 +29,10 @@ export class Hen extends Character {
     if (keyIsDown(RIGHT_ARROW)) {
       this.x = this.x + henSpeed;
       this.nextImage();
+      this.direction = 1;
     } else if (keyIsDown(LEFT_ARROW)) {
       this.x = this.x - henSpeed;
+      this.direction = -1;
       push();
       scale(-1, 1);
       this.nextImage();
@@ -44,6 +48,16 @@ export class Hen extends Character {
     // if (this.isLayingEgg) {
     //   this.image = this.layEggHen;
     // }
+  }
+  //Garrit helped with the following function draw
+  draw() {
+    push();
+    translate(this.x, this.y);
+    scale(this.direction, 1);
+    const w = this.img.width * this.size;
+    const h = this.img.height * this.size;
+    image(this.img, -w / 2, 0, w, h);
+    pop();
   }
 
   eatWorm() {
