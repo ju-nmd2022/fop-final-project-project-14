@@ -1,4 +1,6 @@
 import Character from "./character.js";
+import { Chick } from "./chick.js";
+
 let henSpeed = 5;
 
 export class Hen extends Character {
@@ -14,15 +16,11 @@ export class Hen extends Character {
     });
     this.isEating = false;
 
-    this.layEggHen = loadImage("/images/hen/hen-lay-egg.png", (img) => {
-      img.resize(img.width * 0.05, img.height * 0.05);
-    });
-    this.isLayingEgg = false;
-
     this.direction = 1;
 
     // Initialize numWormsEaten to 0
     this.numWormsEaten = 0;
+    this.chicks = [];
   }
 
   move() {
@@ -33,10 +31,7 @@ export class Hen extends Character {
     } else if (keyIsDown(LEFT_ARROW)) {
       this.x = this.x - henSpeed;
       this.direction = -1;
-      push();
-      scale(-1, 1);
       this.nextImage();
-      pop();
     } else if (keyIsDown(UP_ARROW)) {
       this.y = this.y - henSpeed;
       this.nextImage();
@@ -45,9 +40,11 @@ export class Hen extends Character {
       this.nextImage();
     }
 
-    // if (this.isLayingEgg) {
-    //   this.image = this.layEggHen;
-    // }
+    for (let i = 0; i < this.chicks.length; i++) {
+      const chick = this.chicks[i];
+      chick.x = this.x;
+      chick.y = this.y;
+    }
   }
   //Garrit helped with the following function draw
   draw() {
@@ -65,24 +62,17 @@ export class Hen extends Character {
     this.image = this.eatingHen;
     this.numWormsEaten++;
 
-    // Check if the hen has eaten five worms and lay an egg if necessary
+    // Check if the hen has eaten five worms and maka a baby chick
     if (this.numWormsEaten % 5 === 0) {
-      this.image = this.layEggHen;
-      // Change the image back to the original hen image after a delay of 1 second
-      // setTimeout(() => {
-      //   this.isLayingEgg = false;
-      //   this.imageIndex = 0;
-      //   this.image = this.images[0];
-      //   this.isEating = false;
-      // }, 1000);
-    } else {
-      // Change the image back to the original hen image after a delay of 0.2 second, chatGPT gave me the solution
-      setTimeout(() => {
-        this.isEating = false;
-        this.imageIndex = 0;
-        this.image = this.images[0];
-      }, 200);
+      const newChick = new Chick(this.x, this.y);
+      this.chicks.push(newChick);
     }
+    // Change the image back to the original hen image after a delay of 0.2 second, chatGPT gave me the solution
+    setTimeout(() => {
+      this.isEating = false;
+      this.imageIndex = 0;
+      this.image = this.images[0];
+    }, 200);
   }
 }
 
