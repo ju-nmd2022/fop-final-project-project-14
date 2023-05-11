@@ -17,6 +17,21 @@ export class Fox extends Character {
     // Initialize the fox's movement direction, this slution is from chatGPT
     this.direction = p5.Vector.random2D(); // Set a random direction
   }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+
+    if (this.direction.x > 0) {
+      scale(-1, 1); // Flip the image horizontally
+    }
+
+    const w = this.img.width * this.size;
+    const h = this.img.height * this.size;
+    image(this.img, -w / 2, 0, w, h);
+
+    pop();
+  }
   foxMove() {
     // Check if the fox has hit a wall
     if (
