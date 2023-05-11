@@ -7,7 +7,6 @@ let backgroundImage;
 let canvasPlayScreen;
 
 let hen1;
-let chick1;
 let worms = [];
 let fox1;
 let wormCount = 0;
@@ -16,7 +15,7 @@ function preload() {
   backgroundImage = loadImage("/images/background-big.png");
 
   hen1 = new Hen(200, 200);
-  chick1 = new Chick(170, 300);
+  // chick1 = new Chick(170, 300);
 }
 
 window.preload = preload;
@@ -57,8 +56,13 @@ function draw() {
     hen1.draw();
   }
   hen1.move();
-  chick1.draw();
-  chick1.chickMove();
+
+  // Draw and move the chicks
+  for (let i = 0; i < hen1.chicks.length; i++) {
+    const chick = hen1.chicks[i];
+    chick.draw();
+    chick.chickMove();
+  }
 
   fox1.draw();
   fox1.foxMove();

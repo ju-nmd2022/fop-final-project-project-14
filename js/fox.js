@@ -21,7 +21,7 @@ export class Fox extends Character {
   draw() {
     push();
     translate(this.x, this.y);
-
+    //(this.direction.x > 0) means if the fox is moving to the right
     if (this.direction.x > 0) {
       scale(-1, 1); // Flip the image horizontally
     }
