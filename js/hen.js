@@ -41,17 +41,17 @@ export class Hen extends Character {
       this.nextImage();
     }
 
-    // for (let i = 0; i < this.chicks.length; i++) {
-    //   const chick = this.chicks[i];
-    //   chick.x = this.x;
-    //   chick.y = this.y;
-    // }
-
     // Adjust the x position of each chick to line them up horizontally
     for (let i = 0; i < this.chicks.length; i++) {
+      push();
+      translate(this.x, this.y);
       const chick = this.chicks[i];
-      chick.x = this.x + (i + 1) * chickSpacing * this.direction;
-      chick.y = this.y;
+      chick.x =
+        this.x +
+        this.img.width * this.size +
+        (i + 1) * chickSpacing * this.direction;
+      chick.y = this.y + this.img.height * this.size;
+      pop();
     }
   }
   //Garrit helped with the following function draw
@@ -71,15 +71,16 @@ export class Hen extends Character {
     this.numWormsEaten++;
 
     // Check if the hen has eaten five worms and maka a baby chick
-    // if (this.numWormsEaten % 5 === 0) {
-    //   const newChick = new Chick(this.x, this.y);
-    //   this.chicks.push(newChick);
-    // }
 
-    if (this.numWormsEaten % 5 === 0) {
+    if (this.numWormsEaten % 3 === 0) {
       const newChick = new Chick(
-        this.x + (this.chicks.length + 1) * chickSpacing * this.direction,
-        this.y
+        // this.x + (this.chicks.length + 1) * chickSpacing * this.direction,
+        // this.y
+
+        this.x +
+          this.img.width * this.size +
+          (this.chicks.length + 1) * chickSpacing * this.direction,
+        this.y + this.img.height * this.size
       );
       this.chicks.push(newChick);
     }
