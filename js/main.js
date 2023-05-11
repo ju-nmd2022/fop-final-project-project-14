@@ -6,7 +6,7 @@ import { Worm } from "./worm.js";
 let backgroundImage;
 let canvasPlayScreen;
 
-let hen1;
+let hen1; 
 let worms = [];
 let fox1;
 let wormCount = 0;
