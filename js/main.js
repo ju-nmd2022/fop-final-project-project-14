@@ -13,9 +13,6 @@ let wormCount = 0;
 
 function preload() {
   backgroundImage = loadImage("/images/background-big.png");
-
-  hen1 = new Hen(200, 200);
-  // chick1 = new Chick(170, 300);
 }
 
 window.preload = preload;
@@ -26,6 +23,7 @@ function setup() {
 
   //the fox will show up from random location in the canvas
   fox1 = new Fox(random(width), random(height));
+  hen1 = new Hen(200, 200);
 
   // Add the click event listener for the canvas
   canvasPlayScreen = document.querySelector("#defaultCanvas0");

@@ -2,6 +2,7 @@ import Character from "./character.js";
 import { Chick } from "./chick.js";
 
 let henSpeed = 5;
+let chickSpacing = 30;
 
 export class Hen extends Character {
   constructor(x, y) {
@@ -40,9 +41,16 @@ export class Hen extends Character {
       this.nextImage();
     }
 
+    // for (let i = 0; i < this.chicks.length; i++) {
+    //   const chick = this.chicks[i];
+    //   chick.x = this.x;
+    //   chick.y = this.y;
+    // }
+
+    // Adjust the x position of each chick to line them up horizontally
     for (let i = 0; i < this.chicks.length; i++) {
       const chick = this.chicks[i];
-      chick.x = this.x;
+      chick.x = this.x + (i + 1) * chickSpacing * this.direction;
       chick.y = this.y;
     }
   }
@@ -63,10 +71,19 @@ export class Hen extends Character {
     this.numWormsEaten++;
 
     // Check if the hen has eaten five worms and maka a baby chick
+    // if (this.numWormsEaten % 5 === 0) {
+    //   const newChick = new Chick(this.x, this.y);
+    //   this.chicks.push(newChick);
+    // }
+
     if (this.numWormsEaten % 5 === 0) {
-      const newChick = new Chick(this.x, this.y);
+      const newChick = new Chick(
+        this.x + (this.chicks.length + 1) * chickSpacing * this.direction,
+        this.y
+      );
       this.chicks.push(newChick);
     }
+
     // Change the image back to the original hen image after a delay of 0.2 second, chatGPT gave me the solution
     setTimeout(() => {
       this.isEating = false;
