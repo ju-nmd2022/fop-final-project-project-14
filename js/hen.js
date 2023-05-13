@@ -48,8 +48,8 @@ export class Hen extends Character {
       const chick = this.chicks[i];
       chick.x =
         this.x +
-        this.img.width * this.size +
-        (i + 1) * chickSpacing * this.direction;
+        (this.img.width * this.size) / 2 +
+        (i + 1) * chickSpacing * -this.direction;
       chick.y = this.y + this.img.height * this.size;
       pop();
     }
@@ -78,8 +78,8 @@ export class Hen extends Character {
         // this.y
 
         this.x +
-          this.img.width * this.size +
-          (this.chicks.length + 1) * chickSpacing * this.direction,
+          (this.img.width * this.size) / 2 +
+          (this.chicks.length + 1) * chickSpacing * -this.direction,
         this.y + this.img.height * this.size
       );
       this.chicks.push(newChick);
