@@ -3,9 +3,9 @@ let chickSpeed = 5;
 export class Chick extends Character {
   constructor(x, y) {
     super(x, y, 0.035, [
-      "/images/chick/chick0.png",
-      "/images/chick/chick1.png",
-      "/images/chick/chick2.png",
+      "../images/chick/chick0.png",
+      "../images/chick/chick1.png",
+      "../images/chick/chick2.png",
     ]);
     this.direction = 1;
   }
@@ -32,6 +32,7 @@ export class Chick extends Character {
   }
   draw() {
     push();
+    imageMode(CENTER);
     translate(this.x, this.y);
     scale(this.direction, 1);
     const w = this.img.width * this.size;
