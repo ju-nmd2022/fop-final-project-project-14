@@ -11,11 +11,10 @@ let worms = [];
 let fox1;
 let wormCount = 0;
 
-function preload() {
-  backgroundImage = loadImage("/images/background-big.png");
+let gameStartTime;
 
-  hen1 = new Hen(200, 200);
-  // chick1 = new Chick(170, 300);
+function preload() {
+  backgroundImage = loadImage("./images/background-big.png");
 }
 
 window.preload = preload;
@@ -24,16 +23,25 @@ function setup() {
   frameRate(30);
   createCanvas(backgroundImage.width, backgroundImage.height);
 
+  // Store the start time of the game,millis() is a built-in function that returns the number of milliseconds that have elapsed since the program started running.
+  gameStartTime = millis();
+
   //the fox will show up from random location in the canvas
   fox1 = new Fox(random(width), random(height));
+  hen1 = new Hen(width / 2, height / 2);
 
   // Add the click event listener for the canvas
   canvasPlayScreen = document.querySelector("#defaultCanvas0");
   canvasPlayScreen.addEventListener("click", mouseClicked);
 
+  //limit the canvas where the worms can pop up
+  const wormImage = loadImage("./images/worm.png");
+  const visibleWidth = width - wormImage.width;
+  const visibleHeight = height - wormImage.height;
+
   for (let i = 0; i < 5; i++) {
-    const x = random(width);
-    const y = random(height);
+    const x = random(visibleWidth);
+    const y = random(visibleHeight);
     const worm = new Worm(x, y);
     worms.push(worm);
   }
@@ -66,6 +74,21 @@ function draw() {
 
   fox1.draw();
   fox1.foxMove();
+
+  // Check for collision between hen and fox
+  if (hen1.collidesWith(fox1)) {
+    // Handle collision between hen and fox
+    gameOver();
+  }
+
+  // Check for collision between fox and chicks
+  for (let i = 0; i < hen1.chicks.length; i++) {
+    const chick = hen1.chicks[i];
+    if (chick.collidesWith(fox1)) {
+      // Handle collision between chick and fox
+      gameOver();
+    }
+  }
 }
 window.draw = draw;
 
@@ -99,9 +122,25 @@ function mouseClicked() {
 }
 
 function indicator() {
+  // Calculate the elapsed time in minutes
+  const elapsedTime = millis() - gameStartTime;
+  const seconds = Math.floor(elapsedTime / 1000);
+
   push();
   fill(255);
   textSize(16);
   text("Worm eaten: " + wormCount, 20, 30);
+  text("Chick hatched: " + Math.floor(wormCount / 3), 20, 50);
+  text("You survived: " + seconds + " seconds", 20, 70);
+  pop();
+}
+
+function gameOver() {
+  // Draw "Game Over" text
+  push();
+  textSize(32);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text("Game Over", width / 2, height / 2);
   pop();
 }

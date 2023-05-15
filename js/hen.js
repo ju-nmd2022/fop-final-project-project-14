@@ -2,13 +2,14 @@ import Character from "./character.js";
 import { Chick } from "./chick.js";
 
 let henSpeed = 5;
+let chickSpacing = 30;
 
 export class Hen extends Character {
   constructor(x, y) {
     super(x, y, 0.05, [
-      "/images/hen/hen0.png",
-      "/images/hen/hen1.png",
-      "/images/hen/hen2.png",
+      "../images/hen/hen0.png",
+      "../images/hen/hen1.png",
+      "../images/hen/hen2.png",
     ]);
 
     this.eatingHen = loadImage("/images/hen/hen-eat-worm.png", (img) => {
@@ -24,26 +25,33 @@ export class Hen extends Character {
   }
 
   move() {
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
       this.x = this.x + henSpeed;
       this.nextImage();
       this.direction = 1;
-    } else if (keyIsDown(LEFT_ARROW)) {
+    } else if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
       this.x = this.x - henSpeed;
       this.direction = -1;
       this.nextImage();
-    } else if (keyIsDown(UP_ARROW)) {
+    } else if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
       this.y = this.y - henSpeed;
       this.nextImage();
-    } else if (keyIsDown(DOWN_ARROW)) {
+    } else if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
       this.y = this.y + henSpeed;
       this.nextImage();
     }
 
+    // Adjust the x position of each chick to line them up horizontally
     for (let i = 0; i < this.chicks.length; i++) {
+      push();
+      translate(this.x, this.y);
       const chick = this.chicks[i];
-      chick.x = this.x;
-      chick.y = this.y;
+      chick.x =
+        this.x +
+        (this.img.width * this.size) / 2 +
+        (i + 1) * chickSpacing * -this.direction;
+      chick.y = this.y + this.img.height * this.size;
+      pop();
     }
   }
   //Garrit helped with the following function draw
@@ -63,10 +71,20 @@ export class Hen extends Character {
     this.numWormsEaten++;
 
     // Check if the hen has eaten five worms and maka a baby chick
-    if (this.numWormsEaten % 5 === 0) {
-      const newChick = new Chick(this.x, this.y);
+
+    if (this.numWormsEaten % 3 === 0) {
+      const newChick = new Chick(
+        // this.x + (this.chicks.length + 1) * chickSpacing * this.direction,
+        // this.y
+
+        this.x +
+          (this.img.width * this.size) / 2 +
+          (this.chicks.length + 1) * chickSpacing * -this.direction,
+        this.y + this.img.height * this.size
+      );
       this.chicks.push(newChick);
     }
+
     // Change the image back to the original hen image after a delay of 0.2 second, chatGPT gave me the solution
     setTimeout(() => {
       this.isEating = false;
