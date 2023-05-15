@@ -25,18 +25,18 @@ export class Hen extends Character {
   }
 
   move() {
-    if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
       this.x = this.x + henSpeed;
       this.nextImage();
       this.direction = 1;
-    } else if (keyIsDown(LEFT_ARROW)) {
+    } else if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
       this.x = this.x - henSpeed;
       this.direction = -1;
       this.nextImage();
-    } else if (keyIsDown(UP_ARROW)) {
+    } else if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
       this.y = this.y - henSpeed;
       this.nextImage();
-    } else if (keyIsDown(DOWN_ARROW)) {
+    } else if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
       this.y = this.y + henSpeed;
       this.nextImage();
     }

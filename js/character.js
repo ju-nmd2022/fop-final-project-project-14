@@ -41,7 +41,33 @@ export default class Character {
     } else {
       this.imageIndex = 0;
     }
-    // den aktiva bilden som visas i draw uppdateras till nästa i arrayn
+    //the active image displayed in draw is updated to the next in the array
     this.img = this.imgs[this.imageIndex];
+  }
+
+  //
+  collidesWith(object) {
+    // Calculate the bounding boxes of the two objects
+    const thisLeft = this.x;
+    const thisRight = this.x + this.img.width * this.size;
+    const thisTop = this.y;
+    const thisBottom = this.y + this.img.height * this.size;
+
+    const objectLeft = object.x;
+    const objectRight = object.x + object.img.width * object.size;
+    const objectTop = object.y;
+    const objectBottom = object.y + object.img.height * object.size;
+
+    // Check for collision by comparing the bounding box coordinates
+    if (
+      thisRight >= objectLeft &&
+      thisLeft <= objectRight &&
+      thisBottom >= objectTop &&
+      thisTop <= objectBottom
+    ) {
+      return true; // Collides
+    } else {
+      return false; // Doesn't collide
+    }
   }
 }

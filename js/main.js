@@ -14,7 +14,7 @@ let wormCount = 0;
 let gameStartTime;
 
 function preload() {
-  backgroundImage = loadImage("../images/background-big.png");
+  backgroundImage = loadImage("./images/background-big.png");
 }
 
 window.preload = preload;
@@ -23,7 +23,7 @@ function setup() {
   frameRate(30);
   createCanvas(backgroundImage.width, backgroundImage.height);
 
-  // Store the start time of the game
+  // Store the start time of the game,millis() is a built-in function that returns the number of milliseconds that have elapsed since the program started running.
   gameStartTime = millis();
 
   //the fox will show up from random location in the canvas
@@ -35,7 +35,7 @@ function setup() {
   canvasPlayScreen.addEventListener("click", mouseClicked);
 
   //limit the canvas where the worms can pop up
-  const wormImage = loadImage("../images/worm.png");
+  const wormImage = loadImage("./images/worm.png");
   const visibleWidth = width - wormImage.width;
   const visibleHeight = height - wormImage.height;
 
@@ -74,6 +74,21 @@ function draw() {
 
   fox1.draw();
   fox1.foxMove();
+
+  // Check for collision between hen and fox
+  if (hen1.collidesWith(fox1)) {
+    // Handle collision between hen and fox
+    gameOver();
+  }
+
+  // Check for collision between fox and chicks
+  for (let i = 0; i < hen1.chicks.length; i++) {
+    const chick = hen1.chicks[i];
+    if (chick.collidesWith(fox1)) {
+      // Handle collision between chick and fox
+      gameOver();
+    }
+  }
 }
 window.draw = draw;
 
@@ -116,6 +131,16 @@ function indicator() {
   textSize(16);
   text("Worm eaten: " + wormCount, 20, 30);
   text("Chick hatched: " + Math.floor(wormCount / 3), 20, 50);
-  text("Game played: " + seconds + " seconds", 20, 70);
+  text("You survived: " + seconds + " seconds", 20, 70);
+  pop();
+}
+
+function gameOver() {
+  // Draw "Game Over" text
+  push();
+  textSize(32);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text("Game Over", width / 2, height / 2);
   pop();
 }
