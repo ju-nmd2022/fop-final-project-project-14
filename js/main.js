@@ -146,9 +146,11 @@ function startScreen() {
   text("Chicken Survive game", width / 2, height / 2 - 100);
   pop();
   text("Avoid the cunning fox!", width / 2, height / 2 - 30);
+  text("Use arrow or AWSD keys to control the move,", width / 2, height / 2);
+  text("Click mouse to eat the worm.", width / 2, height / 2 + 30);
   push();
   textStyle(BOLD);
-  text("Press space key to star playing", width / 2, height / 2);
+  text("Press space key to star playing", width / 2, height / 2 + 60);
   pop();
   pop();
 }

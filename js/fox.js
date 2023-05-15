@@ -35,8 +35,8 @@ export class Fox extends Character {
   foxMove() {
     // Check if the fox has hit a wall
     if (
-      this.x < 0 ||
-      this.x > width - this.img.width * this.size ||
+      this.x < (this.img.width * this.size) / 2 ||
+      this.x > width - (this.img.width * this.size) / 2 ||
       this.y < 0 ||
       this.y > height - this.img.height * this.size
     ) {
