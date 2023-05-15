@@ -1,7 +1,7 @@
-import { Hen } from "./hen.js";
-import { Chick } from "./chick.js";
-import { Fox } from "./fox.js";
-import { Worm } from "./worm.js";
+import { Hen } from "../js/hen.js";
+import { Chick } from "../js/chick.js";
+import { Fox } from "../js/fox.js";
+import { Worm } from "../js/worm.js";
 
 let backgroundImage;
 let canvasPlayScreen;
@@ -130,7 +130,7 @@ function indicator() {
   fill(255);
   textSize(16);
   text("Worm eaten: " + wormCount, 20, 30);
-  text("Chick hatched: " + Math.floor(wormCount / 3), 20, 50);
+  text("Chicken hatched: " + Math.floor(wormCount / 3), 20, 50);
   text("You survived: " + seconds + " seconds", 20, 70);
   pop();
 }

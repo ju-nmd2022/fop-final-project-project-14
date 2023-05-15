@@ -1,4 +1,4 @@
-import Character from "./character.js";
+import Character from "../js/character.js";
 
 export class Worm extends Character {
   constructor(x, y) {

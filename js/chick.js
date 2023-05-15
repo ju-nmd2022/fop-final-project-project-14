@@ -1,4 +1,4 @@
-import Character from "./character.js";
+import Character from "../js/character.js";
 let chickSpeed = 5;
 export class Chick extends Character {
   constructor(x, y) {

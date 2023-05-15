@@ -1,5 +1,5 @@
-import Character from "./character.js";
-import { Chick } from "./chick.js";
+import Character from "../js/character.js";
+import { Chick } from "../js/chick.js";
 
 let henSpeed = 5;
 let chickSpacing = 30;
