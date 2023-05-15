@@ -11,6 +11,8 @@ let worms = [];
 let fox1;
 let wormCount = 0;
 
+let gameStartTime;
+
 function preload() {
   backgroundImage = loadImage("../images/background-big.png");
 }
@@ -20,6 +22,9 @@ window.preload = preload;
 function setup() {
   frameRate(30);
   createCanvas(backgroundImage.width, backgroundImage.height);
+
+  // Store the start time of the game
+  gameStartTime = millis();
 
   //the fox will show up from random location in the canvas
   fox1 = new Fox(random(width), random(height));
@@ -102,10 +107,15 @@ function mouseClicked() {
 }
 
 function indicator() {
+  // Calculate the elapsed time in minutes
+  const elapsedTime = millis() - gameStartTime;
+  const seconds = Math.floor(elapsedTime / 1000);
+
   push();
   fill(255);
   textSize(16);
   text("Worm eaten: " + wormCount, 20, 30);
   text("Chick hatched: " + Math.floor(wormCount / 3), 20, 50);
+  text("Game played: " + seconds + " seconds", 20, 70);
   pop();
 }
