@@ -12,7 +12,7 @@ let fox1;
 let wormCount = 0;
 
 function preload() {
-  backgroundImage = loadImage("/images/background-big.png");
+  backgroundImage = loadImage("../images/background-big.png");
 }
 
 window.preload = preload;
@@ -23,15 +23,20 @@ function setup() {
 
   //the fox will show up from random location in the canvas
   fox1 = new Fox(random(width), random(height));
-  hen1 = new Hen(200, 200);
+  hen1 = new Hen(width / 2, height / 2);
 
   // Add the click event listener for the canvas
   canvasPlayScreen = document.querySelector("#defaultCanvas0");
   canvasPlayScreen.addEventListener("click", mouseClicked);
 
+  //limit the canvas where the worms can pop up
+  const wormImage = loadImage("../images/worm.png");
+  const visibleWidth = width - wormImage.width;
+  const visibleHeight = height - wormImage.height;
+
   for (let i = 0; i < 5; i++) {
-    const x = random(width);
-    const y = random(height);
+    const x = random(visibleWidth);
+    const y = random(visibleHeight);
     const worm = new Worm(x, y);
     worms.push(worm);
   }
@@ -101,5 +106,6 @@ function indicator() {
   fill(255);
   textSize(16);
   text("Worm eaten: " + wormCount, 20, 30);
+  text("Chick hatched: " + Math.floor(wormCount / 3), 20, 50);
   pop();
 }
