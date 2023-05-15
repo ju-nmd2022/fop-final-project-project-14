@@ -45,7 +45,7 @@ export default class Character {
     this.img = this.imgs[this.imageIndex];
   }
 
-  //
+  //the hitbox learned from Liam
   collidesWith(object) {
     // Calculate the bounding boxes of the two objects
     const thisLeft = this.x;
