@@ -51,27 +51,4 @@ export class Fox extends Character {
     this.y += this.foxSpeed * this.direction.y;
     this.nextImage();
   }
-  // foxMove() {
-  //   this.x += this.direction.x * foxSpeed;
-  //   this.y += this.direction.y * foxSpeed;
-
-  //   this.x = constrain(this.x, 0, width - this.img.width * this.scale);
-  //   this.y = constrain(this.y, 0, height - this.img.height * this.scale);
-  //   this.nextImage();
-  // }
-
-  // changeDirection() {
-  //   // If the fox hits the left or right border of the canvas, change the horizontal direction
-  //   if (this.x <= 0 || this.x >= width - this.img.width * this.scale) {
-  //     this.direction.x *= -1;
-  //   }
-
-  //   // If the fox hits the top or bottom border of the canvas, change the vertical direction
-  //   if (
-  //     this.y <= 0 ||
-  //     this.y >= height - height - this.img.height * this.scale
-  //   ) {
-  //     this.direction.y *= -1;
-  //   }
-  // }
 }
