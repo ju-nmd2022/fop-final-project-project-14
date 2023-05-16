@@ -7,10 +7,13 @@ export default class Character {
     this.y = y;
     this.size = size;
     this.imgs = this.loadImages(imgs);
+
+    // it is setting the initial value of the img property based on the imgs array.
     this.img = this.imgs[this.imageIndex];
   }
 
   draw() {
+    //It uses the p5.js library's image() function to draw the character's image on the canvas.
     image(
       this.img,
       this.x,
@@ -24,6 +27,7 @@ export default class Character {
   // Reads each path into a p5.Image
   // Saves to an array
   // Returns image objects back to the caller
+  //
   loadImages(imgs) {
     const loadedImages = [];
     for (let i = 0; i < imgs.length; i++) {
@@ -35,7 +39,6 @@ export default class Character {
   }
 
   nextImage() {
-    //minus ett för att inte gå utanför arrayn
     if (this.imageIndex < this.imgs.length - 1) {
       this.imageIndex = this.imageIndex + 1;
     } else {
@@ -46,6 +49,8 @@ export default class Character {
   }
 
   //the hitbox learned from Liam
+  //and https://www.youtube.com/watch?v=uAfw-ko3kB8&t=90s
+
   collidesWith(object) {
     // Calculate the bounding boxes of the two objects
     const thisLeft = this.x;

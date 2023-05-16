@@ -54,7 +54,7 @@ export class Hen extends Character {
       pop();
     }
   }
-  //Garrit helped with the following function draw
+  //Garrit helped with the following function draw, to flip the image
   draw() {
     push();
     translate(this.x, this.y);
@@ -86,6 +86,7 @@ export class Hen extends Character {
     }
 
     // Change the image back to the original hen image after a delay of 0.2 second, chatGPT gave me the solution
+    //https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
     setTimeout(() => {
       this.isEating = false;
       this.imageIndex = 0;
