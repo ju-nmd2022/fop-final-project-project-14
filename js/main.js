@@ -11,6 +11,7 @@ let fox;
 let wormCount = 0;
 let gameStartTime;
 let gameState = "start";
+let foxSpeed = 4; // Default fox speed
 
 function preload() {
   backgroundImage = loadImage("./images/background-big.png");
@@ -26,7 +27,7 @@ function setup() {
   gameStartTime = millis();
 
   //the fox will show up from random location in the canvas
-  fox = new Fox(random(width), random(height));
+  fox = new Fox(width / 4, height / 4, foxSpeed);
   hen = new Hen(width / 2, height / 2);
 
   // Add the click event listener for the canvas
@@ -141,7 +142,7 @@ function startScreen() {
   textSize(22);
   textAlign(CENTER);
   push();
-  textSize(35);
+  textSize(40);
   textStyle(BOLD);
   text("Chicken Survive game", width / 2, height / 2 - 100);
   pop();
@@ -205,7 +206,7 @@ function resetGame() {
 
   // Reset hen, chicks, fox, and any other game elements
   hen = new Hen(width / 2, height / 2);
-  fox = new Fox(random(width), random(height));
+  fox = new Fox(width / 4, height / 4, foxSpeed);
 
   // Initialize worms and other elements as needed
   const wormImage = loadImage("./images/worm.png");

@@ -1,7 +1,7 @@
 import Character from "../js/character.js";
-const foxSpeed = 3;
+// const foxSpeed = 10;
 export class Fox extends Character {
-  constructor(x, y) {
+  constructor(x, y, foxSpeed) {
     super(x, y, 0.05, [
       "../images/fox/fox0.png",
       "../images/fox/fox1.png",
@@ -13,7 +13,8 @@ export class Fox extends Character {
       "../images/fox/fox8.png",
       "../images/fox/fox9.png",
     ]);
-
+    //I wnat to change the difficulty of the game by changing foxspeed
+    this.foxSpeed = foxSpeed; // Set the fox's speed
     // Initialize the fox's movement direction, this slution is from chatGPT
     this.direction = p5.Vector.random2D(); // Set a random direction
   }
@@ -46,8 +47,8 @@ export class Fox extends Character {
     }
 
     // Move in the current direction
-    this.x += foxSpeed * this.direction.x;
-    this.y += foxSpeed * this.direction.y;
+    this.x += this.foxSpeed * this.direction.x;
+    this.y += this.foxSpeed * this.direction.y;
     this.nextImage();
   }
   // foxMove() {
