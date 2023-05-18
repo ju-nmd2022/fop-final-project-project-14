@@ -12,7 +12,7 @@ export class Hen extends Character {
       "./images/hen/hen2.png",
     ]);
 
-    this.eatingHen = loadImage("/images/hen/hen-eat-worm.png", (img) => {
+    this.eatingHen = loadImage("./images/hen/hen-eat-worm.png", (img) => {
       img.resize(img.width * 0.05, img.height * 0.05);
     });
     this.isEating = false;
