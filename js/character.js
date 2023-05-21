@@ -31,13 +31,15 @@ export default class Character {
   loadImages(imgs) {
     const loadedImages = [];
     for (let i = 0; i < imgs.length; i++) {
+      //https://p5js.org/reference/#/p5/loadImage
+      //loadImage is a build in function in P5.js
       const loadedImage = loadImage(imgs[i]);
       loadedImages.push(loadedImage);
     }
 
     return loadedImages;
   }
-
+  //It checks if the current imageIndex is less than imgs.length - 1 (the index of the last image in the array). If true, it increments the imageIndex by 1, moving to the next image.
   nextImage() {
     if (this.imageIndex < this.imgs.length - 1) {
       this.imageIndex = this.imageIndex + 1;
@@ -45,6 +47,7 @@ export default class Character {
       this.imageIndex = 0;
     }
     //the active image displayed in draw is updated to the next in the array
+    //ensuring that the updated image will be displayed when the draw method is called.
     this.img = this.imgs[this.imageIndex];
   }
 

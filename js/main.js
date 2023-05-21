@@ -1,5 +1,5 @@
 import { Hen } from "../js/hen.js";
-import { Chick } from "../js/chick.js";
+import { Chick } from "../js/chick.js"; //this class is not used here
 import { Fox } from "../js/fox.js";
 import { Worm } from "../js/worm.js";
 
@@ -24,13 +24,13 @@ function setup() {
   createCanvas(backgroundImage.width, backgroundImage.height);
 
   // Store the start time of the game,millis() is a built-in function that returns the number of milliseconds that have elapsed since the program started running.
+  //https://p5js.org/reference/#/p5/millis
   gameStartTime = millis();
 
-  //the fox will show up from random location in the canvas
   fox = new Fox(width / 4, height / 4, foxSpeed);
   hen = new Hen(width / 2, height / 2);
 
-  // Add the click event listener for the canvas
+  // // Add the click event listener for the canvas,Sofia code this, but I am not sure why here, when I delete this two lines, did not influnce the game.
   canvasPlayScreen = document.querySelector("#defaultCanvas0");
   canvasPlayScreen.addEventListener("click", mouseClicked);
 
@@ -66,6 +66,7 @@ function draw() {
     }
 
     // Check for collision between fox and chicks
+    //hen refers to an instance of the Hen class, and chicks is a property of that instance.
     for (let i = 0; i < hen.chicks.length; i++) {
       const chick = hen.chicks[i];
       if (chick.collidesWith(fox)) {
@@ -148,7 +149,11 @@ function startScreen() {
   pop();
   text("Avoid the cunning fox!", width / 2, height / 2 - 30);
   text("Use arrow or AWSD keys to control the move,", width / 2, height / 2);
-  text("Click mouse on the worm to eat them.", width / 2, height / 2 + 30);
+  text(
+    "Get close and click mouse on the worm to eat them.",
+    width / 2,
+    height / 2 + 30
+  );
   push();
   textStyle(BOLD);
   text("Press space key to start playing", width / 2, height / 2 + 60);
@@ -165,7 +170,7 @@ function playScreen() {
     worm.draw();
   }
 
-  // Check if the hen is eating and draw the appropriate image
+  // Check if the hen is eating and draw the eating image
   if (hen.isEating) {
     image(hen.eatingHen, hen.x, hen.y);
   } else {

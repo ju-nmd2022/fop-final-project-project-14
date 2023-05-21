@@ -11,15 +11,14 @@ export class Hen extends Character {
       "./images/hen/hen1.png",
       "./images/hen/hen2.png",
     ]);
-
+    //chatGPT provide me the callback function solution of changing image when the hen is eating, and changes size of the image
+    //resize is a build in function in P5.js
     this.eatingHen = loadImage("./images/hen/hen-eat-worm.png", (img) => {
       img.resize(img.width * 0.05, img.height * 0.05);
     });
+    // Initialize variables values, they are instance variables of the class.
     this.isEating = false;
-
     this.direction = 1;
-
-    // Initialize numWormsEaten to 0
     this.numWormsEaten = 0;
     this.chicks = [];
   }
@@ -55,6 +54,7 @@ export class Hen extends Character {
     }
   }
   //Garrit helped with the following function draw, to flip the image
+  //I think it is continue writting from the character method draw
   draw() {
     push();
     translate(this.x, this.y);
@@ -70,13 +70,10 @@ export class Hen extends Character {
     this.image = this.eatingHen;
     this.numWormsEaten++;
 
-    // Check if the hen has eaten five worms and maka a baby chick
+    // Check if the hen has eaten three worms and maka a baby chick
 
     if (this.numWormsEaten % 3 === 0) {
       const newChick = new Chick(
-        // this.x + (this.chicks.length + 1) * chickSpacing * this.direction,
-        // this.y
-
         this.x +
           (this.img.width * this.size) / 2 +
           (this.chicks.length + 1) * chickSpacing * -this.direction,

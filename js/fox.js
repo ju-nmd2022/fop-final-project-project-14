@@ -13,7 +13,7 @@ export class Fox extends Character {
       "./images/fox/fox8.png",
       "./images/fox/fox9.png",
     ]);
-    //I wnat to change the difficulty of the game by changing foxspeed
+    //I wnat to change the difficulty of the game by changing foxspeed for further features
     this.foxSpeed = foxSpeed; // Set the fox's speed
     // Initialize the fox's movement direction, this slution is from chatGPT
     this.direction = p5.Vector.random2D(); // Set a random direction
